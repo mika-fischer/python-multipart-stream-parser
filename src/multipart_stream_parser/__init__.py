@@ -53,9 +53,10 @@ def multipart_type(content_type, prepend_boundary_dashes=None):
         raise InvalidContentType(
             'boundary parameter is missing: "{}"'.format(content_type))
 
-    if prepend_boundary_dashes or (prepend_boundary_dashes is None and
-                                       (not boundary.startswith('--') and
-                                                len(boundary) > 2 and boundary[2] != '-')):
+    if prepend_boundary_dashes or \
+            (prepend_boundary_dashes is None and
+             (not boundary.startswith('--') and
+              len(boundary) > 2 and boundary[2] != '-')):
         boundary = '--' + boundary
 
     return MultipartType(subtype=subtype, boundary=boundary,
